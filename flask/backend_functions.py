@@ -21,31 +21,36 @@ Phone Numbers format:
 
 def compare_lengths():
     try: 
-        old_test = open("old.csv",r) 
-        if old_test == None:
-            raise Exception
+        print("a")
+        with open("old.csv",r) as f:
+            pass
+
+
+        print(old_test)
+        print("\n\n")
+        old = pd.get_csv("old.csv")
+        oldlen = len(old)
+
+        new = pd.get_csv("data.csv")
+        newlen = len(new)
+
+        if newlen > oldlen:
+            #remove
+            subprocess.call("bash remove_old.sh", shell=True)
+            database.clear()
+            todays_data()
+            send_messages()
 
         else:
-            old = pd.get_csv("old.csv")
-            oldlen = len(old)
-
-            new = pd.get_csv("data.csv")
-            newlen = len(new)
-
-            if newlen > oldlen:
-                #remove
-                subprocess.call("bash remove_old.sh", shell=True)
-                database.clear()
-                todays_data()
-                send_messages()
-
-            else:
-                database.clear()
+            print("HERE\n\n")
+            subprocess.call("bash remove_old.sh", shell=True)
+            database.clear()
 
 
 
 
     except:
+        print("ALSJDLKASJLKASDJ\n\n")
         subprocess.call("bash remove_old.sh", shell=True)
 
 
@@ -90,9 +95,13 @@ def date_data(date):
             }
             formatted.append(new_suburb)
 
+    print(formatted)
 # Function that returns the current date data
 def todays_data():
     now = datetime.now()
     date = now.strftime("%Y-%m-%d")
     date_data(date)
 
+
+if __name__ == '__main__':
+    compare_lengths()

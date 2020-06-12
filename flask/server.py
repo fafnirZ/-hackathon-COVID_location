@@ -35,14 +35,14 @@ def post_add_number():
 @APP.route("/info", methods=['GET'])
 def get_information():
 
-    return get_data()
+    return dumps(get_data())
 
 
 @APP.route("/update", methods=['POST'])
 def update_information():
-    update_info()
-    todays_data()
+    #update_info()
     compare_lengths()
+    todays_data()
     return {}
 
 

@@ -12,12 +12,13 @@ def create_message(suburb):
 			return f"There has been {d['CaseCount']} new cases of COVID19 in {suburb} today"
 
 
-def send_messages()
+def send_messages():
 	phone_no = get_phone_numbers()
 	cases_data = get_data()
 
 	for data in cases_data:
 		for number in phone_no:
 			if number['Postcode'] == data['Postcode']:
+				print(number)
 				for no in number['Phone Numbers']:
 					client.messages.create(to=no, from_= our_number,body= create_message(data['Suburb']))
