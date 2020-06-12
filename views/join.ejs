@@ -1,0 +1,23 @@
+<%- include("partials/header") %>
+
+
+
+
+<div class="container" style="text-align: left; padding: 50px; font-size: xx-large;">
+    <form action="/join" method="post">
+        <div class="form-group" style="padding: 20px 0;">
+          <label><strong>Phone Number</strong></label>
+          <input type="text" name="number">
+        </div>
+        <div class="form-group">
+          <label><strong style="margin-right: 75px;">Post Code</strong></label>
+          <input type="text" name="postcode">
+        </div>
+        <button type="submit" class="btn btn-info btn-lg">Submit</button>
+    </form>
+</div>
+
+
+
+<%- include("partials/footer") %>
+

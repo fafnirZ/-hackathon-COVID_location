@@ -2,6 +2,7 @@ from flask import Flask, request
 from flask_cors import CORS
 from json import dumps
 from backend_functions import add_number
+import sys
 '''
 default code
 '''
@@ -26,8 +27,13 @@ CORS(APP)
 @APP.route("/join", methods=['POST'])
 def post_add_number():
     info = request.get_json()
-    return dumps(add_number(info[number], info[postcode]))
 
+    return add_number(info['number'], info['postcode'])
+
+@APP.route("/info", methods=['GET'])
+def get_information():
+
+    return {"user": "joseph"}
 
 
 
