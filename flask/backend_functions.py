@@ -63,12 +63,11 @@ def update_active_cases():
         postcode = case.postcode
         postcode_exists = False
         for area in database:
-            if area['Postcode'] is postcode:
+            if area['Postcode'] == postcode:
                 postcode_exists = True
                 suburb_exists = False
                 for place in area['Suburb']:
-                    if place['Suburb Name'] is suburb:
-                        
+                    if place['Suburb Name'] == suburb:
                         suburb_exists = True
                         place['New Cases'] += 1
                         place['Cumulative Cases'] += 1
@@ -90,10 +89,12 @@ def update_active_cases():
 # Function that reads only the new daily data from csv as well as update the total number of cases
 def extract_daily():
     total_cases = get_total_cases()
+    
     data = pd.read_csv("scraper/data.csv", skiprows=total_cases)
     num_new_cases = pd.Index(data).size
-    # print(num_new_cases)
+    
     total_cases += num_new_cases
+    print(total_cases)
     return data
 
 
@@ -105,20 +106,4 @@ if __name__ == '__main__':
     print(database)
     print(get_total_cases())
     clear_new_active()
-    #print(database)
-
-
-# from flask import Flask
-# APP = Flask(__name__)
-
-
-# @APP.route("/")
-# def hello():
-#     return "hello"
-
-
-# if __name__ == "__main__":
-#     PORT = int(sys.argv[1]) if len(sys.argv) == 2 else 8080
-#     #set_port(PORT)
-#     APP.run(port=PORT)
-#     #stop_saving()
+    print(database)
