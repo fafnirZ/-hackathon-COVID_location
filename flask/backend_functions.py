@@ -20,21 +20,35 @@ Phone Numbers format:
 '''
 
 def compare_lengths():
-    old = pd.get_csv("old.csv")
-    oldlen = len(old)
+    try: 
+        old_test = open("old.csv",r) 
+        if old_test == None:
+            raise Exception
 
-    new = pd.get_csv("data.csv")
-    newlen = len(new)
+        else:
+            old = pd.get_csv("old.csv")
+            oldlen = len(old)
 
-    if newlen > oldlen:
-        #remove
+            new = pd.get_csv("data.csv")
+            newlen = len(new)
+
+            if newlen > oldlen:
+                #remove
+                subprocess.call("bash remove_old.sh", shell=True)
+                database.clear()
+                todays_data()
+                send_messages()
+
+            else:
+                database.clear()
+
+
+
+
+    except:
         subprocess.call("bash remove_old.sh", shell=True)
-        database.clear()
-        todays_data()
-        send_messages()
 
-    else:
-        database.clear()
+
 
 
 def add_number(number, postcode):
