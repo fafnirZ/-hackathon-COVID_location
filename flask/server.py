@@ -2,6 +2,7 @@ from flask import Flask, request
 from flask_cors import CORS
 from json import dumps
 from backend_functions import add_number, todays_data, compare_lengths
+from database import get_data
 from get_data_file import update_info
 import sys
 '''
@@ -34,7 +35,7 @@ def post_add_number():
 @APP.route("/info", methods=['GET'])
 def get_information():
 
-    return {"user": "joseph"}
+    return get_data()
 
 
 @APP.route("/update", methods=['POST'])
@@ -49,4 +50,5 @@ def update_information():
 
 
 if __name__ == '__main__':
+
     APP.run(port=(int(sys.argv[1]) if len(sys.argv) == 2 else 8080))
