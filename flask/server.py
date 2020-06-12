@@ -1,7 +1,7 @@
 from flask import Flask, request
 from flask_cors import CORS
 from json import dumps
-from backend_functions import add_number
+from backend_functions import add_number, todays_data, compare_lengths
 from get_data_file import update_info
 import sys
 '''
@@ -40,6 +40,8 @@ def get_information():
 @APP.route("/update", methods=['POST'])
 def update_information():
     update_info()
+    todays_data()
+    compare_lengths()
     return {}
 
 
