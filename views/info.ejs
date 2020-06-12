@@ -1,8 +1,21 @@
 <%- include("partials/header") %>
 
-<div class="container">
-    <h1>Reported Cases Of Coronavirus In The Past 24 Hours:</h1>
-    <p> <%= result.user %> </p>
+<div class="container" style="text-align: center;">
+    <h1 style="padding-bottom: 30px;">Reported Cases Of Coronavirus In NSW Within The Past Day:</h1>
+    <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+        <% result.forEach(function(key){  %>
+         <div class="col-3">
+          <div class="card" style="margin-bottom: 50px; padding: 10px;">
+            <div class="caption">
+              <h4><%= key.Suburb %></h4>
+            </div>
+            <div class="caption">
+                <p style="font-size: x-large;"><%= key.CaseCount %></p>
+            </div>
+         </div>
+        </div>
+       <% }); %>
+      </div>
 </div>
 
 

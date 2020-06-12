@@ -61,11 +61,11 @@ app.listen(4004, function() {
   
 
 
-setInterval(() => post(), 86400000);
+// setInterval(() => post(), 86400000);
 
-function post() {
-    const xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("POST", "http://localhost:8080/update");
-    xmlhttp.setRequestHeader("Content-Type","application/json");
-    xmlhttp.send();
-}
+// function post() {
+//     const xmlhttp = new XMLHttpRequest();
+//     xmlhttp.open("POST", "http://localhost:8080/update");
+//     xmlhttp.setRequestHeader("Content-Type","application/json");
+//     xmlhttp.send();
+// }
