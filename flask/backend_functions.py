@@ -2,7 +2,7 @@
 from database import get_data, get_total_cases
 from datetime import datetime
 import pandas as pd
-
+import subprocess
 '''
 Database format:
 [
@@ -21,6 +21,23 @@ Database format:
 ]
 
 '''
+
+def compare_lenghts():
+    old = pd.get_csv("old.csv")
+    oldlen = len(old)
+
+    new = pd.get_csv("data.csv")
+    newlen = len(new)
+
+    if newlen > oldlen:
+        #remove
+        subprocess.call("bash remove_old.sh", shell=True)
+        database.clear()
+        date_data(stringy_date())
+
+    else:
+        database.clear()
+
 
 def add_number(number, postcode):
     database = get_data()
@@ -42,7 +59,7 @@ def add_number(number, postcode):
 
 #Function that given a date in the format 'YYYY-MM-DD', will return that day's data
 def date_data(date):
-    all_data = pd.read_csv("scraper/data.csv")
+    all_data = pd.read_csv("old.csv")
     day_data = all_data.loc[all_data['notification_date'] == date]
     formatted = []
     for case in day_data.itertuples():
