@@ -3,6 +3,7 @@ from database import get_data, get_phone_numbers, database
 from datetime import datetime
 import pandas as pd
 import subprocess
+from msgclient import send_messages
 '''
 Database format:
 [
@@ -29,7 +30,8 @@ def compare_lenghts():
         #remove
         subprocess.call("bash remove_old.sh", shell=True)
         database.clear()
-        date_data(stringy_date())
+        todays_data()
+        send_messages()
 
     else:
         database.clear()

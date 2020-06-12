@@ -10,6 +10,7 @@ decorator==4.4.2
 defusedxml==0.6.0
 entrypoints==0.3
 Flask==1.1.2
+Flask-Cors==3.0.8
 idna==2.9
 importlib-metadata==1.6.1
 ipykernel==5.3.0
@@ -43,6 +44,7 @@ prompt-toolkit==3.0.5
 ptyprocess==0.6.0
 py==1.8.1
 Pygments==2.6.1
+PyJWT==1.7.1
 pyparsing==2.4.7
 pyrsistent==0.16.0
 pytest==5.4.3
@@ -59,6 +61,7 @@ terminado==0.8.3
 testpath==0.4.4
 tornado==6.0.4
 traitlets==4.3.3
+twilio==6.42.0
 urllib3==1.25.9
 wcwidth==0.2.4
 webencodings==0.5.1
