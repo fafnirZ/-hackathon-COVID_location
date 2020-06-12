@@ -46,19 +46,26 @@ app.get("/info", (req, res) => {
     xmlhttp.open("GET", "http://localhost:8080/info");
     xmlhttp.send();
 
-
-
-
-
-
-    
 });
+
 
 app.get("/about", (req, res) => {
     res.render("about");
 });
 
+
+
 app.listen(4004, function() {
     console.log("server has started");
   });
   
+
+
+setInterval(() => post(), 86400000);
+
+function post() {
+    const xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("POST", "http://localhost:8080/update");
+    xmlhttp.setRequestHeader("Content-Type","application/json");
+    xmlhttp.send();
+}
