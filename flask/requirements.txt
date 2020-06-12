@@ -3,11 +3,14 @@ attrs==19.3.0
 backcall==0.2.0
 beautifulsoup4==4.9.1
 bleach==3.1.5
+certifi==2020.4.5.2
+chardet==3.0.4
 click==7.1.2
 decorator==4.4.2
 defusedxml==0.6.0
 entrypoints==0.3
 Flask==1.1.2
+idna==2.9
 importlib-metadata==1.6.1
 ipykernel==5.3.0
 ipython==7.15.0
@@ -48,6 +51,7 @@ pytz==2020.1
 pyzmq==19.0.1
 qtconsole==4.7.4
 QtPy==1.9.0
+requests==2.23.0
 Send2Trash==1.5.0
 six==1.15.0
 soupsieve==2.0.1
@@ -55,6 +59,7 @@ terminado==0.8.3
 testpath==0.4.4
 tornado==6.0.4
 traitlets==4.3.3
+urllib3==1.25.9
 wcwidth==0.2.4
 webencodings==0.5.1
 Werkzeug==1.0.1
