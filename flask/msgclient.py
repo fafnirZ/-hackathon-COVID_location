@@ -1,5 +1,14 @@
 from twilio.rest import Client
-from database import get_data, get_phone_numbers
+from database import database, phone_numbers
+
+def get_data():
+	global database
+	return database
+
+def get_phone_numbers():
+	global phone_numbers
+	return phone_numbers
+
 
 our_number = '+13013217859'
 
@@ -16,9 +25,14 @@ def send_messages():
 	phone_no = get_phone_numbers()
 	cases_data = get_data()
 
+	print(phone_no)
+	print(cases_data)
+
 	for data in cases_data:
+		print("abc")
 		for number in phone_no:
+			print("hi")
 			if number['Postcode'] == data['Postcode']:
-				print(number)
+				print("HI")
 				for no in number['Phone Numbers']:
 					client.messages.create(to=no, from_= our_number,body= create_message(data['Suburb']))

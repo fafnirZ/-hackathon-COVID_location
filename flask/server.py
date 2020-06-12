@@ -42,7 +42,6 @@ def get_information():
 def update_information():
     #update_info()
     compare_lengths()
-    todays_data()
     return {}
 
 

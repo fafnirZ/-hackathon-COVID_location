@@ -1,5 +1,5 @@
 
-from database import get_data, get_phone_numbers, database
+from database import database, phone_numbers
 from datetime import datetime
 import pandas as pd
 import subprocess
@@ -18,40 +18,44 @@ Phone Numbers format:
 ]
 
 '''
+def get_data():
+	global database
+	return database
+
+def get_phone_numbers():
+	global phone_numbers
+	return phone_numbers
+
+
 
 def compare_lengths():
-    try: 
-        print("a")
-        with open("old.csv",r) as f:
-            pass
-
-
-        print(old_test)
-        print("\n\n")
-        old = pd.get_csv("old.csv")
-        oldlen = len(old)
-
-        new = pd.get_csv("data.csv")
-        newlen = len(new)
-
-        if newlen > oldlen:
-            #remove
-            subprocess.call("bash remove_old.sh", shell=True)
-            database.clear()
-            todays_data()
-            send_messages()
-
-        else:
-            print("HERE\n\n")
-            subprocess.call("bash remove_old.sh", shell=True)
-            database.clear()
 
 
 
+    print("a")
+    old_test = open("old.csv", "r")
+    if(old_test == None):
+        return {}
+    print(old_test)
+    print("\n\n")
+    old = pd.read_csv("old.csv")
+    oldlen = len(old)
 
-    except:
-        print("ALSJDLKASJLKASDJ\n\n")
+    new = pd.read_csv("data.csv")
+    newlen = len(new)
+
+    if newlen > oldlen:
+        #remove
         subprocess.call("bash remove_old.sh", shell=True)
+        database.clear()
+        todays_data()
+
+    else:
+        print("HERE\n\n")
+        subprocess.call("bash remove_old.sh", shell=True)
+        database.clear()
+
+
 
 
 
@@ -78,24 +82,29 @@ def date_data(date):
     formatted = get_data()
     all_data = pd.read_csv("old.csv")
     day_data = all_data.loc[all_data['notification_date'] == date]
-    formatted = []
     for case in day_data.itertuples():
         suburb = case.lga_name19
         postcode = case.postcode
+
         suburb_exists = False
         for area in formatted:
             if area['Suburb'] == suburb:
+
                 suburb_exists = True
                 area['CaseCount'] += 1
         if not suburb_exists:
+
             new_suburb = {
-                'Postcode': postcode,
+                'Postcode': str(int(postcode)),
                 'Suburb': suburb,
                 'CaseCount': 1
             }
             formatted.append(new_suburb)
-
+            
     print(formatted)
+    send_messages()
+
+
 # Function that returns the current date data
 def todays_data():
     now = datetime.now()
