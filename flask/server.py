@@ -30,7 +30,10 @@ def post_add_number():
 
     return add_number(info['number'], info['postcode'])
 
+@APP.route("/info", methods=['GET'])
+def get_information():
 
+    return {"user": "joseph"}
 
 
 
