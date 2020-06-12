@@ -26,7 +26,7 @@ CORS(APP)
 @APP.route("/join", methods=['POST'])
 def post_add_number():
     info = request.get_json()
-    return dumps(info[number], info[postcode])
+    return dumps(add_number(info[number], info[postcode]))
 
 
 
@@ -35,5 +35,4 @@ def post_add_number():
 
 
 if __name__ == '__main__':
-    APP.run(port=(int(sys.argv[1]) if len(sys.argv) == 2 else 8080)) 
-    
+    APP.run(port=(int(sys.argv[1]) if len(sys.argv) == 2 else 8080))
