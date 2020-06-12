@@ -3,6 +3,7 @@ from database import get_data, get_phone_numbers, database
 from datetime import datetime
 import pandas as pd
 import subprocess
+from msgclient import send_messages
 '''
 Database format:
 [
@@ -18,7 +19,7 @@ Phone Numbers format:
 
 '''
 
-def compare_lenghts():
+def compare_lengths():
     old = pd.get_csv("old.csv")
     oldlen = len(old)
 
@@ -29,7 +30,8 @@ def compare_lenghts():
         #remove
         subprocess.call("bash remove_old.sh", shell=True)
         database.clear()
-        date_data(stringy_date())
+        todays_data()
+        send_messages()
 
     else:
         database.clear()
@@ -73,11 +75,10 @@ def date_data(date):
                 'CaseCount': 1
             }
             formatted.append(new_suburb)
-    return formatted
 
 # Function that returns the current date data
 def todays_data():
     now = datetime.now()
     date = now.strftime("%Y-%m-%d")
-    return date_data(date)
+    date_data(date)
 
