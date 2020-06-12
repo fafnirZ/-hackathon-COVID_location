@@ -2,7 +2,7 @@
 from database import get_data, get_total_cases
 from datetime import datetime
 import pandas as pd
-
+import subprocess
 '''
 Database format:
 [
@@ -10,6 +10,23 @@ Database format:
 ]
 
 '''
+
+def compare_lenghts():
+    old = pd.get_csv("old.csv")
+    oldlen = len(old)
+
+    new = pd.get_csv("data.csv")
+    newlen = len(new)
+
+    if newlen > oldlen:
+        #remove
+        subprocess.call("bash remove_old.sh", shell=True)
+        database.clear()
+        date_data(stringy_date())
+
+    else:
+        database.clear()
+
 
 def add_number(number, postcode):
     database = get_data()
