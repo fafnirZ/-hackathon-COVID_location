@@ -1,5 +1,5 @@
 
-from database import get_data, get_total_cases
+from database import get_data, get_phone_numbers, database
 from datetime import datetime
 import pandas as pd
 import subprocess
@@ -7,6 +7,13 @@ import subprocess
 Database format:
 [
     {'Postcode': 2010, 'Suburb': 'Hurstville', 'CaseCount': 3}
+]
+Phone Numbers format:
+[
+    {
+        'Postcode': ,
+        'Phone Numbers': []
+    },
 ]
 
 '''
@@ -29,9 +36,9 @@ def compare_lenghts():
 
 
 def add_number(number, postcode):
-    database = get_data()
+    phone_numbers = get_phone_numbers()
     postcode_exists = False
-    for area in database:
+    for area in phone_numbers:
         if area['Postcode'] is postcode:
             postcode_exists = True
             area['Phone Numbers'].append(number)
@@ -41,12 +48,13 @@ def add_number(number, postcode):
             'Postcode': postcode,
             'Phone Numbers': [number],
         }
-        database.append(new_postcode)
+        phone_numbers.append(new_postcode)
 
     return {}
 
 #Function that given a date in the format 'YYYY-MM-DD', will return that day's data
 def date_data(date):
+    formatted = get_data()
     all_data = pd.read_csv("old.csv")
     day_data = all_data.loc[all_data['notification_date'] == date]
     formatted = []
@@ -72,6 +80,4 @@ def todays_data():
     now = datetime.now()
     date = now.strftime("%Y-%m-%d")
     return date_data(date)
-
-    
 
