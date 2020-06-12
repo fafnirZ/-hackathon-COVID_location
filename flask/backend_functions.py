@@ -6,18 +6,7 @@ import pandas as pd
 '''
 Database format:
 [
-    {
-        'Postcode': postcode,
-        'Phone Numbers': [list of numbers],
-        'Suburb': [
-            {
-                'Suburb Name': ,
-                'New Cases': ,
-                'Cumulative Cases': ,
-            }
-        ]
-        
-    },
+    {'Postcode': 2010, 'Suburb': 'Hurstville', 'CaseCount': 3}
 ]
 
 '''
@@ -34,7 +23,6 @@ def add_number(number, postcode):
         new_postcode = {
             'Postcode': postcode,
             'Phone Numbers': [number],
-            'Suburb':[]
         }
         database.append(new_postcode)
 
@@ -42,7 +30,7 @@ def add_number(number, postcode):
 
 #Function that given a date in the format 'YYYY-MM-DD', will return that day's data
 def date_data(date):
-    all_data = pd.read_csv("scraper/data.csv")
+    all_data = pd.read_csv("old.csv")
     day_data = all_data.loc[all_data['notification_date'] == date]
     formatted = []
     for case in day_data.itertuples():
@@ -62,7 +50,11 @@ def date_data(date):
             formatted.append(new_suburb)
     return formatted
 
-# Function that returns the current date into the correct format for date_data
-def stringify_date():
+# Function that returns the current date data
+def todays_data():
     now = datetime.now()
-    return now.strftime("%Y-%m-%d")
+    date = now.strftime("%Y-%m-%d")
+    return date_data(date)
+
+    
+
