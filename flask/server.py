@@ -45,7 +45,6 @@ def update_information():
     return {}
 
 
-@APP.route("/bot", methods=['POST'])
 
 
 
