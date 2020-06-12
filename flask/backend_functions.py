@@ -18,7 +18,7 @@ Phone Numbers format:
 
 '''
 
-def compare_lenghts():
+def compare_lengths():
     old = pd.get_csv("old.csv")
     oldlen = len(old)
 
@@ -73,11 +73,10 @@ def date_data(date):
                 'CaseCount': 1
             }
             formatted.append(new_suburb)
-    return formatted
 
 # Function that returns the current date data
 def todays_data():
     now = datetime.now()
     date = now.strftime("%Y-%m-%d")
-    return date_data(date)
+    date_data(date)
 
