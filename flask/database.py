@@ -1,9 +1,9 @@
 database = []
-total_cases = 2
+phone_numbers = []
 def get_data():
 	global database
 	return database
 
-def get_total_cases():
-	global total_cases
-	return total_cases
+def get_phone_numbers():
+	global phone_numbers
+	return phone_numbers
