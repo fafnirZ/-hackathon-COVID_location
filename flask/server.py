@@ -2,6 +2,7 @@ from flask import Flask, request
 from flask_cors import CORS
 from json import dumps
 from backend_functions import add_number
+from get_data_file import update_info
 import sys
 '''
 default code
@@ -36,7 +37,10 @@ def get_information():
     return {"user": "joseph"}
 
 
-
+@APP.route("/update", methods=['POST'])
+def update_information():
+    update_info()
+    return {}
 
 
 
