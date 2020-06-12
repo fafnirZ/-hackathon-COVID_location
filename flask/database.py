@@ -1,5 +1,5 @@
 database = []
-total_cases = 0
+total_cases = 2
 def get_data():
 	global database
 	return database
