@@ -4,7 +4,8 @@ Database format:
 {
     postcode: {
         'Phone Numbers': [list of numbers]
-        'Active Cases': }
+        'Number of Active Cases': {'Suburb': , 'Suburb': }
+        'New Active Cases': [list of suburbs with new active cases in the most recent pull of data]}
 }
 
 '''
@@ -12,17 +13,20 @@ Database format:
 database = {}
 
 
-def add_number(number, suburb):
-    database[suburb].append(number)
+def add_number(number, postcode):
+    database[postcode]['Phone Numbers'].append(number)
     return {}
 
 def add_suburb()
-    
+    database
 def update()
 
 
 
+if __name__ == "__main__":
+    add_number('0413843630', 2036)
 
+    print(database)
 
 
 
