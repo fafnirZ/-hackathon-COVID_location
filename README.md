@@ -1,4 +1,4 @@
-# -hackathon-COVID_location
+# hackathon-COVID_location
 
 This is the COVID summariser we have created for a hackathon, which fetches periodically (per day) the latest official NSW dataset of 
 new coronavirus cases, and removes all unnecessary data that confuses the general public. Leaving only the most crucial data for the 
